@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head></h:head> 
+<body> 
+
+<h:form id="form">
+    <p:tree id="treeTest" value="#{auxView.root}" var="node" filterBy="#{node}" animate="true"  selectionMode="single" selection="#{auxView.selectedNode}" >
+    		
+        <p:ajax event="dragdrop" listener="#{treeDNDView.onDragDrop}" update=":form:treeTest" />
+        <p:treeNode >
+            <h:outputText value="#{node}" />
+        </p:treeNode>
+    </p:tree>
+    
+    <h3 style="margin-top: 0">Basic Ring</h3>
+    <p:ring id="basic" value="#{auxView.assets}" var="car">
+        <p:outputPanel style="text-align: center;" layout="block">
+            #{car.ticker}
+            <br />
+            <p:commandButton update=":form:carDetail" icon="ui-icon-search" title="View" oncomplete="PF('carDialog').show();">
+                <f:setPropertyActionListener value="#{car}" target="#{auxView.selectedAsset}" />
+            </p:commandButton>
+        </p:outputPanel>
+    </p:ring>
+    
+    
+    <p:dialog header="Car Info" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="170">
+        <p:outputPanel id="carDetail" style="text-align:center;" layout="block">
+            <p:panelGrid  columns="2" rendered="#{not empty auxView.selectedAsset}" columnClasses="value">
+       
+ 
+                <h:outputText value="Id:" />
+                <h:outputText value="#{auxView.selectedAsset.id}" />
+ 
+                <h:outputText value="Name" />
+                <h:outputText value="#{auxView.selectedAsset.asset_name}" />
+ 
+                <h:outputText value="Ticker: " />
+                <h:outputText value="#{auxView.selectedAsset.ticker}" />
+ 
+          
+            </p:panelGrid>
+        </p:outputPanel>
+    </p:dialog>
+    
+</h:form>
+
+</body> 
+</html>
