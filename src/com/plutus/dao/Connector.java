@@ -9,11 +9,11 @@ import java.sql.SQLException;
 
 
 public class Connector {
-	
+
 	private static final String SQL = "SELECT * FROM  asset;";
 	private static final String INSERT = "INSERT INTO asset(info) VALUES (?);";
 	
-	public static void main(String[] argv) throws ClassNotFoundException {
+	public static void main(String[] args) throws ClassNotFoundException {
 		
 		Connection con = null;
 		PreparedStatement pst = null;
@@ -54,6 +54,7 @@ public class Connector {
 		
 		Connection conn = null;
 		
+		
 		  try
 	        {
 	            Class.forName(driver);
@@ -69,6 +70,46 @@ public class Connector {
 	        }
 
 		return conn;
+
+	}
+	
+	public static void closeConnection(Connection conn, PreparedStatement pst,
+			ResultSet rs) {
+
+		try {
+
+			if (pst != null)
+				pst.clearParameters();
+			pst.close();
+			
+
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		
+		}
+		try {
+
+			if (rs != null)
+				rs.close();
+			
+
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		
+		}
+		try {
+
+			if (conn != null)
+				conn.close();
+		
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
 
 	}
 }
