@@ -11,11 +11,8 @@ public class AssetController {
 	private static AssetDAO dao = new AssetDAO();
 	
 	public static boolean save(Asset obj) {
-		if(obj.getId()!=0) {
 			return dao.insert(obj);
-		}else {
-			return dao.update(obj);
-		}
+	
 	}
 	
 	public static Asset selectByTicker(String ticker) {

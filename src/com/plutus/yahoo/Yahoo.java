@@ -42,12 +42,13 @@ public class Yahoo {
 //		}
 	
 		
-//		Calendar from = Calendar.getInstance();
-//		Calendar to = Calendar.getInstance();
-//		from.add(Calendar.YEAR, -1); // from 1 year ago
-//		Stock google = YahooFinance.get("GOOG");
-//		List<HistoricalQuote> gq = google.getHistory(from, to, Interval.DAILY);
-		//gq.forEach(x -> x.get);
+		Calendar from = Calendar.getInstance();
+		Calendar to = Calendar.getInstance();
+		from.add(Calendar.DAY_OF_MONTH, -30); // from 1 year ago
+		
+		Stock google = YahooFinance.get("ALYA.TO");
+		List<HistoricalQuote> gq = google.getHistory(from, to, Interval.DAILY);
+		gq.forEach(x -> System.out.println(x.getAdjClose()));
 	
 
 	}
