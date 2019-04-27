@@ -47,7 +47,7 @@ public class PersonDAO {
 		//list.addAll(selectByInfo("wend"));
 		
 		for (Person person : list) {
-			System.out.println(person.getName()+" age = "+person.getAge()+"");
+			System.out.println(person.getFirstName()+" age = "+person.getAge()+"");
 		}
 		//select();
 	}

@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.TimerTask;
 
 import com.plutus.dao.PersonDAO;
-import com.plutus.model.Person1;
 
 public class ExtractData extends TimerTask {
 	
@@ -39,15 +38,6 @@ public class ExtractData extends TimerTask {
 	}
 	
 	
-	private void read() {
-		List<Person1> list = PersonDAO.selectByInfo("");
-	//	List<Person> list = selectByInfo("Eins","EIns");
-		
-		//list.addAll(selectByInfo("wend"));
-		
-		for (Person1 person : list) {
-			System.out.println(person.getKey()+" "+person.getName());
-		}
-	}
+
 
 }

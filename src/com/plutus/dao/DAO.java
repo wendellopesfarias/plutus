@@ -18,7 +18,32 @@ public class DAO {
 
 	private static Gson g = new Gson();
 
-	public static boolean insert(Object o) {
+	public static boolean insert(Object o, long id) {
+
+		Connection con = null;
+		PreparedStatement pst = null;
+		String table = o.getClass().getSimpleName().toLowerCase();
+		boolean status = false;
+
+		try {
+
+			con = Connector.getConnection();
+			pst = con.prepareStatement("INSERT INTO " + table + " (id, dataset) VALUES (?,?);");
+			pst.setLong(1, id);
+			pst.setString(2, g.toJson(o,o.getClass()));
+
+			if (pst.executeUpdate() == 1)
+				status = true;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			Connector.closeConnection(con, pst, null);
+		}
+		return status;
+	}
+	
+	public static boolean insert2(Object o) {
 
 		Connection con = null;
 		PreparedStatement pst = null;

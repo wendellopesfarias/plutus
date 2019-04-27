@@ -47,7 +47,7 @@ public class AuxView implements Serializable {
         
         for (int i = 0; i < 10; i++) {
         		Asset a = new Asset();
-			a.setId(i);
+			a.setId(i+"");
 			a.setTicker("A"+i);
         		a.setAsset_name("Asset Name"+i);
         		assets.add(a);
